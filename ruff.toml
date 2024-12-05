@@ -1,0 +1,21 @@
+target-version = "py313"
+line-length = 120
+indent-width = 4
+
+[lint]
+select = ["ALL"]
+ignore = [
+    "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",  # Missing docstring is ok
+    "D203",  # Conflicting with D211 which is preferred
+    "D212",  # Conflicting with D213 which is preferred
+    "FBT001", "FBT002",  # Boolean positional args are ok
+    "INP001",  # Namespace packages are ok
+    "RET504",  # Assignments before return can improve code readability
+    "TRY003",  # Have no desire to create custom exception classes when there are suitable default ones, lol
+]
+
+[format]
+line-ending = "cr-lf"
+docstring-code-format = true
+quote-style = "double"
+indent-style = "space"

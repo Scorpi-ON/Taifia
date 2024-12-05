@@ -1,0 +1,87 @@
+МТ: L = {a^n b^5n c^3n | n ≥ 1}
+abc
+1
+
+q0 a -> q1 λ R
+q0 b -> q14 λ R
+q0 c -> q14 λ R
+q0 * -> q14 λ R
+q0 λ -> qz 0 E
+
+q1 a -> q1 a R
+q1 * -> q1 * R
+q1 b -> q2 * R
+q1 c -> q13 * R
+q1 λ -> q12 λ L
+
+q2 b -> q3 * R
+q2 a -> q13 * R
+q2 c -> q13 * R
+q2 λ -> q12 λ L
+
+q3 b -> q4 * R
+q3 a -> q13 * R
+q3 c -> q13 * R
+q3 λ -> q12 λ L
+
+q4 b -> q5 * R
+q4 a -> q13 * R
+q4 c -> q13 * R
+q4 λ -> q12 λ L
+
+q5 b -> q6 * R
+q5 a -> q13 * R
+q5 c -> q13 * R
+q5 * -> q13 * R
+q5 λ -> q12 λ L
+
+q6 b -> q6 b R
+q6 * -> q6 * R
+q6 c -> q7 * R
+q6 a -> q13 * R
+q6 λ -> q12 λ L
+
+q7 c -> q8 * R
+q7 a -> q13 * R
+q7 b -> q13 * R
+q7 λ -> q12 λ L
+
+q8 c -> q9 * R
+q8 a -> q13 * R
+q8 b -> q13 * R
+q8 λ -> q12 λ L
+
+q9 c -> q10 c L
+q9 λ -> q11 λ L
+q9 a -> q13 * R
+q9 b -> q13 * R
+
+q10 a -> q10 a L
+q10 b -> q10 b L
+q10 c -> q10 c L
+q10 * -> q10 * L
+q10 λ -> q0 λ R
+
+q11 * -> q11 λ L
+q11 λ -> qz 1 E
+q11 a -> q12 λ L
+q11 b -> q12 λ L
+q11 c -> q12 λ L
+
+q12 a -> q12 λ L
+q12 b -> q12 λ L
+q12 c -> q12 λ L
+q12 * -> q12 λ L
+q12 λ -> qz 0 E
+
+q13 a -> q13 * R
+q13 b -> q13 * R
+q13 c -> q13 * R
+q13 * -> q13 * R
+q13 λ -> q12 λ L
+
+q14 a -> q14 λ R
+q14 b -> q14 λ R
+q14 c -> q14 λ R
+q14 * -> q14 λ R
+q14 λ -> qz 0 E
