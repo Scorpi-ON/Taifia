@@ -5,7 +5,7 @@
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-Простой эмулятор одно- и многоленточной машины Тьюринга
+Курсовой проект по теории алгоритмов и формальных языков, продуктом которого является эмулятор одно- и многоленточной машины Тьюринга
 
 <details>
   <summary><h2>Скриншоты</h2></summary>
