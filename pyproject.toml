@@ -41,7 +41,7 @@ ignore = [
 ]
 
 [tool.ruff.format]
-line-ending = "cr-lf"
+line-ending = "lf"
 docstring-code-format = true
 quote-style = "double"
 indent-style = "space"

@@ -1,8 +1,8 @@
-from typing import Literal
+from typing import Final, Literal
 
-LAMBDA = "λ"
-RADIX = 10
-UNDERLINE_DIGIT_CHAR_OFFSET = 8320
+LAMBDA: Final = "λ"
+RADIX: Final = 10
+UNDERLINE_DIGIT_CHAR_OFFSET: Final = 8320
 
 Direction = Literal["R", "L", "E"]
 
@@ -40,7 +40,7 @@ class SingleTape:
 
     @char.setter
     def char(self, char: str) -> None:
-        self._word = self._word[:self._index] + char + self._word[self._index + 1:]
+        self._word = self._word[: self._index] + char + self._word[self._index + 1 :]
 
     def move(self, direction: Direction) -> None:
         match direction:
@@ -68,4 +68,4 @@ class SingleTape:
         if state != "z":
             state = SingleTape.num_to_underline_register_str(state)
         state = f"q{state}"
-        return self._word[:self._index] + state + self._word[self._index:]
+        return self._word[: self._index] + state + self._word[self._index :]

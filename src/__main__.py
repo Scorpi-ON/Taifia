@@ -1,6 +1,6 @@
-import os
 import sys
 from pathlib import Path
+from typing import Final
 
 import pyqtgraph as pg
 from PyQt6 import QtWidgets
@@ -14,7 +14,8 @@ from src.turing_machine.machine import TuringMachine
 from src.ui.form import Ui_mainWindow
 from src.working_threads import CheckWordThread, PlottingThread
 
-ALGORITHM_PATH = Path("src/algorithm")
+ALGORITHM_PATH: Final[Path] = Path("src/algorithm")
+THEME_COLOR_BORDER: Final[int] = 128
 
 
 class MainWindow(QMainWindow, Ui_mainWindow):
@@ -28,7 +29,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 
         self.plotWidg.setLabel("left", "Макс. число итераций")
         self.plotWidg.setLabel("bottom", "Длина слова")
-        self.iterations_data = []
+        self.iterations_data: list[int] = []
         self.plotting_thread: PlottingThread | None = None
 
         self.tabWidg.currentChanged.connect(self.save_act_update_state)
@@ -39,7 +40,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         self.saveAct.triggered.connect(self.save)
 
     def load_mt(self) -> None:
-        if not ALGORITHM_PATH.exists() or not os.listdir(ALGORITHM_PATH):
+        if not ALGORITHM_PATH.exists() or not any(ALGORITHM_PATH.iterdir()):
             QMessageBox.critical(
                 self,
                 "Алгоритмы не найдены",
@@ -58,7 +59,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                     QMessageBox.warning(
                         self,
                         "Ошибка парсинга алгоритма",
-                        f"При парсинге файла \"{p.name}\" произошла ошибка.\n\n{e}",
+                        f'При парсинге файла "{p.name}" произошла ошибка.\n\n{e}',
                     )
                 else:
                     self.loaded_MTs.append(mt)
@@ -89,7 +90,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                     QMessageBox.warning(
                         self,
                         "Ошибка парсинга алгоритма",
-                        f"При парсинге файла \"{self.active_MT.filename}\" произошла ошибка.\n\n{e}",
+                        f'При парсинге файла "{self.active_MT.filename}" произошла ошибка.\n\n{e}',
                     )
                     return
             self.check_word_thread = CheckWordThread(
@@ -123,7 +124,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                     QMessageBox.warning(
                         self,
                         "Ошибка парсинга алгоритма",
-                        f"При парсинге файла \"{self.active_MT.filename}\" произошла ошибка.\n\n{e}",
+                        f'При парсинге файла "{self.active_MT.filename}" произошла ошибка.\n\n{e}',
                     )
                     return
             self.plotting_thread = PlottingThread(self.active_MT)
@@ -141,8 +142,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         if self.tabWidg.currentWidget() is self.checkWordTab:
             self.saveAct.setText("Сохранить протокол")
             self.saveAct.setEnabled(
-                bool(self.check_word_thread)
-                and not self.check_word_thread.isRunning(),
+                bool(self.check_word_thread) and not self.check_word_thread.isRunning(),
             )
         else:
             self.saveAct.setText("Сохранить график")
@@ -176,7 +176,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 
 def set_plot_theme(app: QApplication) -> None:
     palette = app.palette()
-    light_theme_enabled = palette.color(QPalette.ColorRole.Window).lightness() > 128
+    light_theme_enabled = palette.color(QPalette.ColorRole.Window).lightness() > THEME_COLOR_BORDER
     background_color, foreground_color = ("w", "k") if light_theme_enabled else ("k", "w")
 
     pg.setConfigOption("background", background_color)

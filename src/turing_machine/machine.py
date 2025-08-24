@@ -15,14 +15,16 @@ class TuringMachine:
 
     @staticmethod
     def get_multitape_command_regexp(count: int) -> re.Pattern:
-        return re.compile((
-            r"^q(\d+) (.(?:,(?:.)){0}) ->"
-            r" q(\d+|z) (.(?:,(?:.)){0}) ([LER](?:,[LER]){0})$"
-        ).format("{%s}" % (count - 1)))
+        return re.compile(
+            (
+                r"^q(\d+) (.(?:,(?:.)){0}) ->"
+                r" q(\d+|z) (.(?:,(?:.)){0}) ([LER](?:,[LER]){0})$"
+            ).format("{%s}" % (count - 1)),
+        )
 
     def __init__(self, filename: str | Path) -> None:
         self._filename = filename
-        self._alphabet: frozenset[str, ...]
+        self._alphabet: frozenset[str]
         self._lang: str
         self._tape_obj: MultiTape
         self._command_regexp: re.Pattern
@@ -31,10 +33,10 @@ class TuringMachine:
 
     @property
     def filename(self) -> str:
-        return self._filename
+        return str(self._filename)
 
     @property
-    def alphabet(self) -> frozenset[str, ...]:
+    def alphabet(self) -> frozenset[str]:
         return self._alphabet
 
     @property
@@ -89,11 +91,9 @@ class TuringMachine:
                 msg = f"Не удалось распарсить строку алгоритма:\n{command}"
                 raise ValueError(msg)
 
-            old_state, old_chars_str, state, chars_str, directions_str = \
-                match_obj.groups()
+            old_state, old_chars_str, state, chars_str, directions_str = match_obj.groups()
             old_chars, chars, directions = (
-                tuple(string.split(","))
-                for string in (old_chars_str, chars_str, directions_str)
+                tuple(string.split(",")) for string in (old_chars_str, chars_str, directions_str)
             )  # type: ignore[blanket-type-ignore]
             self._commands[(old_state, old_chars)] = (state, chars, directions)
 

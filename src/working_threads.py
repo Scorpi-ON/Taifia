@@ -18,7 +18,8 @@ class CheckWordThread(QThread):
         self.generator = mt.process_word_verbose(word)
 
     def run(self) -> None:
-        common_protocol_line = iter_num = None
+        common_protocol_line = ""
+        iter_num = 0
         for protocol_lines, iter_num in self.generator:
             if not self.continue_flag:
                 self.result_got.emit(f"Операция прервана на {iter_num} такте.")
@@ -27,8 +28,7 @@ class CheckWordThread(QThread):
             self.step_passed.emit(common_protocol_line + "\n")
             time.sleep(0.001)
         self.result_got.emit(
-            f"Слово «{self.word}» {'' if '1' in common_protocol_line else 'НЕ '}"
-            f"принадлежит языку ({iter_num} тактов)",
+            f"Слово «{self.word}» {'' if '1' in common_protocol_line else 'НЕ '}принадлежит языку ({iter_num} тактов)",
         )
 
 
