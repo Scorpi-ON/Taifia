@@ -22,9 +22,9 @@ class MainWindow(QMainWindow, Ui_mainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
-        self.active_MT: TuringMachine | None = None
-        self.loaded_MTs: list[TuringMachine] = []
-        self.load_mt()
+        self.active_tm: TuringMachine | None = None
+        self.loaded_tms: list[TuringMachine] = []
+        self.load_tm()
         self.check_word_thread: CheckWordThread | None = None
 
         self.plotWidg.setLabel("left", "Макс. число итераций")
@@ -39,7 +39,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         self.algorithmCombo.currentIndexChanged.connect(self.switch_algorithms)
         self.saveAct.triggered.connect(self.save)
 
-    def load_mt(self) -> None:
+    def load_tm(self) -> None:
         if not ALGORITHM_PATH.exists() or not any(ALGORITHM_PATH.iterdir()):
             QMessageBox.critical(
                 self,
@@ -49,12 +49,12 @@ class MainWindow(QMainWindow, Ui_mainWindow):
             )
             sys.exit(-1)
 
-        prev_lang = self.active_MT.lang if self.active_MT else None
+        prev_lang = self.active_tm.lang if self.active_tm else None
         self.algorithmCombo.clear()
         for p in ALGORITHM_PATH.iterdir():
             if p.name.endswith(".tur"):
                 try:
-                    mt = TuringMachine(p)
+                    tm = TuringMachine(p)
                 except ValueError as e:
                     QMessageBox.warning(
                         self,
@@ -62,18 +62,25 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                         f'При парсинге файла "{p.name}" произошла ошибка.\n\n{e}',
                     )
                 else:
-                    self.loaded_MTs.append(mt)
-                    if prev_lang and mt.lang == prev_lang:
-                        self.active_MT = mt
-                    self.algorithmCombo.addItem(mt.lang)
-        if self.active_MT is None:
+                    self.loaded_tms.append(tm)
+                    if prev_lang and tm.lang == prev_lang:
+                        self.active_tm = tm
+                    self.algorithmCombo.addItem(tm.lang)
+        if self.active_tm is None:
             self.algorithmCombo.setCurrentIndex(0)
             self.switch_algorithms(0)
 
+    @property
+    def active_tm_not_none(self) -> TuringMachine:
+        msg = "active_tm shouldn't be None here"
+        if self.active_tm is None:
+            raise ValueError(msg)
+        return self.active_tm
+
     def switch_algorithms(self, index: int) -> None:
-        self.active_MT = self.loaded_MTs[index]
+        self.active_tm = self.loaded_tms[index]
         alphabet_validator = QRegExpValidator(
-            QRegExp(f"[{''.join(self.active_MT.alphabet)}]*"),
+            QRegExp(f"[{''.join(self.active_tm.alphabet)}]*"),
         )
         self.wordTextInp.setValidator(alphabet_validator)
 
@@ -85,16 +92,16 @@ class MainWindow(QMainWindow, Ui_mainWindow):
             self.turingProtocolTextOutp.clear()
             if self.algDevModeAct.isChecked():
                 try:
-                    self.active_MT.reload()
+                    self.active_tm_not_none.reload()
                 except ValueError as e:
                     QMessageBox.warning(
                         self,
                         "Ошибка парсинга алгоритма",
-                        f'При парсинге файла "{self.active_MT.filename}" произошла ошибка.\n\n{e}',
+                        f'При парсинге файла "{self.active_tm_not_none.filename}" произошла ошибка.\n\n{e}',
                     )
                     return
             self.check_word_thread = CheckWordThread(
-                self.active_MT,
+                self.active_tm_not_none,
                 self.wordTextInp.text(),
             )
             self.check_word_thread.step_passed.connect(
@@ -119,15 +126,15 @@ class MainWindow(QMainWindow, Ui_mainWindow):
             self.plotWidg.clear()
             if self.algDevModeAct.isChecked():
                 try:
-                    self.active_MT.reload()
+                    self.active_tm_not_none.reload()
                 except ValueError as e:
                     QMessageBox.warning(
                         self,
                         "Ошибка парсинга алгоритма",
-                        f'При парсинге файла "{self.active_MT.filename}" произошла ошибка.\n\n{e}',
+                        f'При парсинге файла "{self.active_tm_not_none.filename}" произошла ошибка.\n\n{e}',
                     )
                     return
-            self.plotting_thread = PlottingThread(self.active_MT)
+            self.plotting_thread = PlottingThread(self.active_tm_not_none)
             self.plotting_thread.iteration_passed.connect(self.update_plot)
             self.plotting_thread.finished.connect(self.iterations_data.clear)
             self.plotting_thread.start()
@@ -142,7 +149,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         if self.tabWidg.currentWidget() is self.checkWordTab:
             self.saveAct.setText("Сохранить протокол")
             self.saveAct.setEnabled(
-                bool(self.check_word_thread) and not self.check_word_thread.isRunning(),
+                self.check_word_thread is not None and not self.check_word_thread.isRunning(),
             )
         else:
             self.saveAct.setText("Сохранить график")
