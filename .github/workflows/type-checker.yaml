@@ -24,6 +24,9 @@ jobs:
         with:
           enable-cache: true
 
+      - name: Install prod deps for correct MyPy work
+        run: uv sync --frozen --no-dev
+
       - name: Install MyPy
         run: uv tool install mypy
 
