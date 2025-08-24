@@ -1,11 +1,16 @@
 # Taifia
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python versions](https://img.shields.io/badge/python-^3.12-blue)](https://python.org/)
-[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![license](https://img.shields.io/github/license/Scorpi-ON/Taifia)](https://opensource.org/licenses/MIT)
+[![Python versions](https://img.shields.io/badge/python-3.12-blue)](https://python.org/)
+[![release](https://img.shields.io/github/v/release/Scorpi-ON/Taifia?include_prereleases)](https://github.com/Scorpi-ON/Taifia/releases)
+[![downloads](https://img.shields.io/github/downloads/Scorpi-ON/Taifia/total)](https://github.com/Scorpi-ON/Taifia/releases)
+[![code size](https://img.shields.io/github/languages/code-size/Scorpi-ON/Taifia.svg)](https://github.com/Scorpi-ON/Taifia)
 
-Курсовой проект по теории алгоритмов и формальных языков, продуктом которого является эмулятор одно- и многоленточной машины Тьюринга
+[![Ruff linter](https://github.com/Scorpi-ON/Taifia/actions/workflows/linter.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/linter.yaml)
+[![MyPy type checker](https://github.com/Scorpi-ON/Taifia/actions/workflows/type-checker.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/type-checker.yaml)
+[![CodeQL (Python, GH Actions)](https://github.com/Scorpi-ON/Taifia/actions/workflows/codeql.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/codeql.yaml)
+
+Курсовой проект по теории алгоритмов и формальных языков, продуктом которого является эмулятор одно- и многоленточной машины Тьюринга.
 
 <details>
   <summary><h2>Скриншоты</h2></summary>
@@ -38,30 +43,38 @@
   при его создании)
 - [x] продвинутые инструменты для управления пакетами и анализа качества кода
 - [ ] покрытие юнит-тестами
+- [ ] автоматическая компиляция в единый исполнимый файл
 
 ## Стек
 
-- **[Python ^3.12](https://www.python.org/)** — язык программирования
-- **[Poetry](https://python-poetry.org/)** — пакетный менеджер
-- **[Ruff](https://astral.sh/ruff)** — инструмент для форматирования и анализа кода
-- **[PyQt6](https://www.riverbankcomputing.com/software/pyqt/)** — библиотека для создания графического интерфейса
-- **[pyqtgraph](https://www.pyqtgraph.org/)** — библиотека для построения графиков в PyQt
-- **[pytest](https://docs.pytest.org/en/stable/)** — фреймворк для тестирования
+- **Python ^3.12** — язык программирования
+- **uv** — пакетный менеджер
+- **PyQt6** — библиотека для создания графического интерфейса
+- **pyqtgraph** — библиотека для построения графиков в PyQt
+- **pytest** — фреймворк для тестирования
+- **Ruff** — инструмент для форматирования и анализа кода
+- **MyPy** — статический типизатор Python
+- **Nuitka** — компилятор Python
 
 ## Установка и запуск
 
 0. Клонируйте репозиторий и перейдите в его папку.
-1. Установите [Poetry](https://python-poetry.org/).
-2. Из папки проекта выполните установку зависимостей:
+1. Установите пакетный менеджер uv одним из способов. Например, для Windows:
 
 ```shell
-poetry install --without dev
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+2. Установите зависимости:
+
+```shell
+uv sync --frozen --no-dev
 ```
 
 3. Теперь запускать проект можно командой:
 
 ```shell
-poetry run python -m src.main
+uv run -m src
 ```
 
 ## Модификация
@@ -69,11 +82,20 @@ poetry run python -m src.main
 Чтобы модифицировать проект, необходимо установить все зависимости, включая необходимые только для разработки:
 
 ```shell
-poetry install
+uv sync
+pre-commit install
+```
+
+Запустить форматирование кода, его линтинг и статический анализ типов можно следующими командами соответственно:
+
+```shell
+ruff format
+ruff check --fix
+mypy .
 ```
 
 Обновить py-файл интерфейса после модификации ui-файла в Qt Designer можно командой:
 
 ```shell
-poetry run python -m PyQt6.uic.pyuic -o src/ui/form.py -x src/ui/form.ui
+uv run python -m PyQt6.uic.pyuic -o src/ui/form.py -x src/ui/form.ui
 ```
