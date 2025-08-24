@@ -1,2 +1,17 @@
-.idea
+# Python
+.venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Cache
 __pycache__/
+.ruff_cache/
+*.py[cod]
+
+# Env
+.env
+
+# Logs
+*.log
