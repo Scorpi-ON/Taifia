@@ -19,18 +19,15 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
 
-      - name: Install prod deps for correct MyPy work
-        run: uv sync --frozen --no-dev
-
-      - name: Install MyPy
-        run: uv tool install mypy
+      - name: Install deps
+        run: uv sync --frozen
 
       - name: Run MyPy
         run: mypy .
