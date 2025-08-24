@@ -1,0 +1,26 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: Ruff format
+        entry: ruff format
+        language: system
+        types: [python]
+        pass_filenames: true
+        args: []
+
+      - id: ruff-check-and-fix
+        name: Ruff check and fix
+        entry: ruff check
+        language: system
+        types: [ python ]
+        pass_filenames: true
+        args: [ "--fix" ]
+
+      - id: mypy-type-check
+        name: MyPy type check
+        entry: mypy
+        language: system
+        types: [ python ]
+        pass_filenames: true
+        args: [ ]
