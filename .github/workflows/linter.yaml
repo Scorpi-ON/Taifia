@@ -1,0 +1,34 @@
+name: Ruff linter
+
+on:
+  push:
+    paths:
+      - "**.py"
+  pull_request:
+    paths:
+      - "**.py"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install Ruff
+        run: uv tool install ruff
+
+      - name: Run Ruff formatter
+        run: ruff format
+
+      - name: Run Ruff linter
+        run: ruff check
