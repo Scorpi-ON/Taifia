@@ -3,6 +3,7 @@ name: Ruff linter
 on:
   push:
     paths:
+      - ".github/workflows/linter.yaml"
       - "**.py"
   pull_request:
     paths:

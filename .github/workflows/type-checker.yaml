@@ -3,9 +3,11 @@ name: MyPy type checker
 on:
   push:
     paths:
+      - ".github/workflows/type-checker.yaml"
       - "**.py"
   pull_request:
     paths:
+      - ".github/workflows/type-checker.yaml"
       - "**.py"
 
 jobs:
