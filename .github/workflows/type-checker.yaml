@@ -30,4 +30,4 @@ jobs:
         run: uv sync --frozen
 
       - name: Run MyPy
-        run: mypy .
+        run: uv run mypy .
