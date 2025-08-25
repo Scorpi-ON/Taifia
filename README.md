@@ -7,6 +7,7 @@
 [![code size](https://img.shields.io/github/languages/code-size/Scorpi-ON/Taifia.svg)](https://github.com/Scorpi-ON/Taifia)
 
 [![Ruff and MyPy checks](https://github.com/Scorpi-ON/Taifia/actions/workflows/linters.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/linters.yaml)
+[![UI compilation](https://github.com/Scorpi-ON/Taifia/actions/workflows/ui-compile.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/ui-compile.yaml)
 [![CodeQL (Python, GH Actions)](https://github.com/Scorpi-ON/Taifia/actions/workflows/codeql.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/codeql.yaml)
 
 Курсовой проект по теории алгоритмов и формальных языков, продуктом которого является эмулятор одно- и многоленточной машины Тьюринга.

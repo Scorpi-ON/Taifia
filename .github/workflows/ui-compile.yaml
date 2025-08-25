@@ -1,4 +1,4 @@
-name: Ruff and MyPy checks
+name: UI compilation
 permissions:
   contents: read
   pull-requests: read
