@@ -6,11 +6,11 @@ permissions:
 on:
   push:
     paths:
-      - ".github/workflows/linters.yaml"
+      - ".github/workflows/ui-compile.yaml"
       - "**.py"
   pull_request:
     paths:
-      - ".github/workflows/linters.yaml"
+      - ".github/workflows/ui-compile.yaml"
       - "**.py"
 
 jobs:
@@ -30,4 +30,4 @@ jobs:
         run: uv sync --frozen --no-dev
 
       - name: Run pyuic
-        run: uv run -m PyQt6.uic.pyuic -x src/ui/form.ui
+        run: uv run -m PyQt6.uic.pyuic -x src/ui/form.ui > /dev/null
