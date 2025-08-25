@@ -7,11 +7,11 @@ on:
   push:
     paths:
       - ".github/workflows/ui-compile.yaml"
-      - "**.py"
+      - "**.ui"
   pull_request:
     paths:
       - ".github/workflows/ui-compile.yaml"
-      - "**.py"
+      - "**.ui"
 
 jobs:
   ui-compile:
