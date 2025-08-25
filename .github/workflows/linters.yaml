@@ -1,0 +1,54 @@
+name: Ruff and MyPy checks
+permissions:
+  contents: read
+  pull-requests: read
+
+on:
+  push:
+    paths:
+      - ".github/workflows/linters.yaml"
+      - "**.py"
+  pull_request:
+    paths:
+      - ".github/workflows/linters.yaml"
+      - "**.py"
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install Ruff
+        run: uv tool install ruff
+
+      - name: Run Ruff formatter
+        run: ruff format
+
+      - name: Run Ruff linter
+        run: ruff check
+
+  mypy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install deps
+        run: uv sync --frozen
+
+      - name: Run MyPy
+        run: uv run mypy .

@@ -5,22 +5,33 @@ repos:
         name: Ruff format
         entry: ruff format
         language: system
-        types: [python]
-        pass_filenames: true
-        args: []
+        types: [ python ]
+
+      - id: ui-compile
+        name: Translate .ui files to .py
+        entry: bash -c " 
+          uv run -m PyQt6.uic.pyuic -x src/ui/form.ui -o src/ui/form.py;
+          git add src/ui/form.py;
+          "
+        language: system
+        files: 'src/ui/form\.ui$'
+        pass_filenames: false
 
       - id: ruff-check-and-fix
         name: Ruff check and fix
         entry: ruff check
+        args: [ --fix ]
         language: system
         types: [ python ]
-        pass_filenames: true
-        args: [ "--fix" ]
 
       - id: mypy-type-check
         name: MyPy type check
         entry: mypy
         language: system
         types: [ python ]
-        pass_filenames: true
-        args: [ ]
+
+  - repo: "https://github.com/astral-sh/uv-pre-commit"
+    rev: 0.8.13
+    hooks:
+      - id: uv-lock
+        name: Update uv.lock

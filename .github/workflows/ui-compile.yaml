@@ -1,21 +1,21 @@
-name: MyPy type checker
+name: Ruff and MyPy checks
+permissions:
+  contents: read
+  pull-requests: read
 
 on:
   push:
     paths:
-      - ".github/workflows/type-checker.yaml"
+      - ".github/workflows/linters.yaml"
       - "**.py"
   pull_request:
     paths:
-      - ".github/workflows/type-checker.yaml"
+      - ".github/workflows/linters.yaml"
       - "**.py"
 
 jobs:
-  lint:
+  ui-compile:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: read
 
     steps:
       - name: Checkout repo
@@ -25,9 +25,9 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-
+  
       - name: Install deps
-        run: uv sync --frozen
+        run: uv sync --frozen --no-dev
 
-      - name: Run MyPy
-        run: uv run mypy .
+      - name: Run pyuic
+        run: uv run -m PyQt6.uic.pyuic -x src/ui/form.ui

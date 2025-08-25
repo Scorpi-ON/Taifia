@@ -1,4 +1,9 @@
 name: CodeQL (Python, GH Actions)
+permissions:
+  security-events: write
+  packages: read
+  actions: read
+  contents: read
 
 on:
   push:
@@ -17,11 +22,7 @@ on:
 jobs:
   analyze:
     runs-on: 'ubuntu-latest'
-    permissions:
-      security-events: write
-      packages: read
-      actions: read
-      contents: read
+
     strategy:
       fail-fast: false
       matrix:

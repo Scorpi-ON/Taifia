@@ -6,8 +6,7 @@
 [![downloads](https://img.shields.io/github/downloads/Scorpi-ON/Taifia/total)](https://github.com/Scorpi-ON/Taifia/releases)
 [![code size](https://img.shields.io/github/languages/code-size/Scorpi-ON/Taifia.svg)](https://github.com/Scorpi-ON/Taifia)
 
-[![Ruff linter](https://github.com/Scorpi-ON/Taifia/actions/workflows/linter.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/linter.yaml)
-[![MyPy type checker](https://github.com/Scorpi-ON/Taifia/actions/workflows/type-checker.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/type-checker.yaml)
+[![Ruff and MyPy checks](https://github.com/Scorpi-ON/Taifia/actions/workflows/linters.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/linters.yaml)
 [![CodeQL (Python, GH Actions)](https://github.com/Scorpi-ON/Taifia/actions/workflows/codeql.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/codeql.yaml)
 
 Курсовой проект по теории алгоритмов и формальных языков, продуктом которого является эмулятор одно- и многоленточной машины Тьюринга.
@@ -94,5 +93,7 @@ mypy .
 Обновить py-файл интерфейса после модификации ui-файла в Qt Designer можно командой:
 
 ```shell
-uv run python -m PyQt6.uic.pyuic -o src/ui/form.py -x src/ui/form.ui
+uv run -m PyQt6.uic.pyuic -o src/ui/form.py -x src/ui/form.ui
 ```
+
+Эта и предыдущая операции производятся автоматически при коммитах.

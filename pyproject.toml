@@ -20,7 +20,7 @@ disable_error_code = ["import-untyped"]
 
 [tool.ruff]
 extend-exclude = ["src/ui/form.py"]
-target-version = "py313"
+target-version = "py312"
 line-length = 120
 indent-width = 4
 
