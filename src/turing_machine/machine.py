@@ -14,7 +14,7 @@ class TuringMachine:
     COMMAND_FILE_HEADER_REGEXP = re.compile(r"^(.+)\n([^ ]+)\n(\d+)\n")
 
     @staticmethod
-    def get_multitape_command_regexp(count: int) -> re.Pattern:
+    def get_multitape_command_regexp(count: int) -> re.Pattern[str]:
         return re.compile(
             (
                 r"^q(\d+) (.(?:,(?:.)){0}) ->"
@@ -27,7 +27,7 @@ class TuringMachine:
         self._alphabet: frozenset[str]
         self._lang: str
         self._tape_obj: MultiTape
-        self._command_regexp: re.Pattern
+        self._command_regexp: re.Pattern[str]
         self._commands: Command
         self._load_from_file(filename)
 
