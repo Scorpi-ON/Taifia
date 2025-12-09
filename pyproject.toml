@@ -9,14 +9,13 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "mypy>=1.17.1",
     "pre-commit>=4.3.0",
+    "pyright>=1.1.407",
     "ruff>=0.12.10",
 ]
 
-[tool.mypy]
-exclude = ["src/ui/form.py"]
-disable_error_code = ["import-untyped"]
+[tool.pyright]
+strict = ["src/turing_machine/*"]
 
 [tool.ruff]
 extend-exclude = ["src/ui/form.py"]

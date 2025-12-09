@@ -6,7 +6,7 @@
 [![downloads](https://img.shields.io/github/downloads/Scorpi-ON/Taifia/total)](https://github.com/Scorpi-ON/Taifia/releases)
 [![code size](https://img.shields.io/github/languages/code-size/Scorpi-ON/Taifia.svg)](https://github.com/Scorpi-ON/Taifia)
 
-[![Ruff and MyPy checks](https://github.com/Scorpi-ON/Taifia/actions/workflows/linters.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/linters.yaml)
+[![Ruff and Pyright checks](https://github.com/Scorpi-ON/Taifia/actions/workflows/linters.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/linters.yaml)
 [![UI compilation](https://github.com/Scorpi-ON/Taifia/actions/workflows/ui-compile.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/ui-compile.yaml)
 [![CodeQL (Python, GH Actions)](https://github.com/Scorpi-ON/Taifia/actions/workflows/codeql.yaml/badge.svg)](https://github.com/Scorpi-ON/Taifia/actions/workflows/codeql.yaml)
 
@@ -51,7 +51,7 @@
 - **PyQt6** — библиотека для создания графического интерфейса
 - **pyqtgraph** — библиотека для построения графиков в PyQt
 - **Ruff** — инструмент для форматирования и анализа кода
-- **MyPy** — статический типизатор Python
+- **Pyright** — статический типизатор Python
 - **pre-commit** — фреймворк для настройки хуков Git
 
 ## Установка и запуск
@@ -89,7 +89,7 @@ pre-commit install
 ```shell
 ruff format
 ruff check --fix
-mypy .
+pytight
 ```
 
 Обновить py-файл интерфейса после модификации ui-файла в Qt Designer можно командой:
