@@ -1,4 +1,4 @@
-name: Ruff and MyPy checks
+name: Ruff and Pyright checks
 permissions:
   contents: read
   pull-requests: read
@@ -50,5 +50,5 @@ jobs:
       - name: Install deps
         run: uv sync --frozen
 
-      - name: Run MyPy
+      - name: Run Pyright
         run: uv run pyright

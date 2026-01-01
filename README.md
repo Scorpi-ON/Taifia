@@ -81,7 +81,7 @@ uv run -m src
 
 ```shell
 uv sync
-pre-commit install
+pre-commit install  # эту и последующие команды выполнять после активации venv 
 ```
 
 Запустить форматирование кода, его линтинг и статический анализ типов можно следующими командами соответственно:
@@ -89,7 +89,7 @@ pre-commit install
 ```shell
 ruff format
 ruff check --fix
-pytight
+pyright
 ```
 
 Обновить py-файл интерфейса после модификации ui-файла в Qt Designer можно командой:

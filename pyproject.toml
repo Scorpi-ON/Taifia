@@ -1,17 +1,17 @@
 [project]
 name = "Taifia"
-version = "2.0.0"
-requires-python = ">=3.12,<3.13"
+version = "2.0.1"
+requires-python = ">=3.12,<3.15"
 dependencies = [
-    "pyqt6>=6.9.1",
-    "pyqtgraph>=0.13.7",
+    "pyqt6>=6.10.1",
+    "pyqtgraph>=0.14.0",
 ]
 
 [dependency-groups]
 dev = [
-    "pre-commit>=4.3.0",
+    "pre-commit>=4.5.1",
     "pyright>=1.1.407",
-    "ruff>=0.12.10",
+    "ruff>=0.14.10",
 ]
 
 [tool.pyright]
@@ -19,7 +19,7 @@ strict = ["src/turing_machine/*"]
 
 [tool.ruff]
 extend-exclude = ["src/ui/form.py"]
-target-version = "py312"
+target-version = "py314"
 line-length = 120
 indent-width = 4
 

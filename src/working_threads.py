@@ -1,10 +1,12 @@
 import copy
 import time
 from itertools import product as combine
+from typing import TYPE_CHECKING
 
 from PyQt6.QtCore import QThread, pyqtSignal
 
-from src.turing_machine.machine import TuringMachine
+if TYPE_CHECKING:
+    from src.turing_machine.machine import TuringMachine
 
 
 class CheckWordThread(QThread):

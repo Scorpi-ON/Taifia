@@ -1,8 +1,11 @@
 import re
-from collections.abc import Generator
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from src.turing_machine.tapes.multiple import DirectionsTuple, MultiTape, StrTuple
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
 
 CommandKey = tuple[str, StrTuple]
 CommandValue = tuple[str, StrTuple, DirectionsTuple]
