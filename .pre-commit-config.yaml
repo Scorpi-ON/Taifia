@@ -14,9 +14,9 @@ repos:
         language: system
         types: [python]
 
-      - id: pyright-type-check
-        name: Pyright type check
-        entry: uv run -m pyright
+      - id: ty-type-check
+        name: ty type check
+        entry: uv run ty check
         language: system
         types: [python]
 

@@ -1,4 +1,4 @@
-name: Ruff and Pyright checks
+name: Ruff and ty checks
 permissions:
   contents: read
   pull-requests: read
@@ -35,7 +35,7 @@ jobs:
       - name: Run Ruff linter
         run: ruff check
 
-  pyright:
+  ty:
     runs-on: ubuntu-latest
 
     steps:
@@ -50,5 +50,5 @@ jobs:
       - name: Install deps
         run: uv sync --frozen
 
-      - name: Run Pyright
-        run: uv run pyright
+      - name: Run ty
+        run: uv run ty check
