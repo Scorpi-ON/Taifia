@@ -1,7 +1,7 @@
 # Taifia
 
 [![license](https://img.shields.io/github/license/Scorpi-ON/Taifia)](https://opensource.org/licenses/MIT)
-[![Python versions](https://img.shields.io/badge/python-3.12-blue)](https://python.org/)
+[![Python versions](https://img.shields.io/badge/python-3.14-blue)](https://python.org/)
 [![release](https://img.shields.io/github/v/release/Scorpi-ON/Taifia?include_prereleases)](https://github.com/Scorpi-ON/Taifia/releases)
 [![downloads](https://img.shields.io/github/downloads/Scorpi-ON/Taifia/total)](https://github.com/Scorpi-ON/Taifia/releases)
 [![code size](https://img.shields.io/github/languages/code-size/Scorpi-ON/Taifia.svg)](https://github.com/Scorpi-ON/Taifia)
