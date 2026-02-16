@@ -1,0 +1,105 @@
+ММТ: L = {www | w ∈ {a, b, c}*}
+abc
+2
+
+q0 λ,λ -> qz 1,λ E,E
+q0 a,λ -> q2 a,* R,R
+q0 b,λ -> q2 b,* R,R
+q0 c,λ -> q2 c,* R,R
+
+q1 a,λ -> q2 a,* R,R
+q1 b,λ -> q2 b,* R,R
+q1 c,λ -> q2 c,* R,R
+q1 λ,λ -> q4 λ,λ L,L
+
+q2 a,λ -> q3 a,λ R,E
+q2 b,λ -> q3 b,λ R,E
+q2 c,λ -> q3 c,λ R,E
+q2 λ,λ -> q9 λ,λ L,L
+
+q3 a,λ -> q1 a,λ R,E
+q3 b,λ -> q1 b,λ R,E
+q3 c,λ -> q1 c,λ R,E
+q3 λ,λ -> q9 λ,λ L,L
+
+q4 a,* -> q4 λ,a L,L
+q4 b,* -> q4 λ,b L,L
+q4 c,* -> q4 λ,c L,L
+q4 a,λ -> q5 a,λ E,R
+q4 b,λ -> q5 b,λ E,R
+q4 c,λ -> q5 c,λ E,R
+
+q5 a,a -> q5 a,a E,R
+q5 a,b -> q5 a,b E,R
+q5 a,c -> q5 a,c E,R
+q5 b,a -> q5 b,a E,R
+q5 b,b -> q5 b,b E,R
+q5 b,c -> q5 b,c E,R
+q5 c,a -> q5 c,a E,R
+q5 c,b -> q5 c,b E,R
+q5 c,c -> q5 c,c E,R
+q5 a,λ -> q6 a,λ E,L
+q5 b,λ -> q6 b,λ E,L
+q5 c,λ -> q6 c,λ E,L
+
+q6 a,a -> q6 λ,a L,L
+q6 b,b -> q6 λ,b L,L
+q6 c,c -> q6 λ,c L,L
+q6 a,b -> q10 λ,λ L,L
+q6 a,c -> q10 λ,λ L,L
+q6 b,a -> q10 λ,λ L,L
+q6 b,c -> q10 λ,λ L,L
+q6 c,a -> q10 λ,λ L,L
+q6 c,b -> q10 λ,λ L,L
+q6 a,λ -> q7 a,λ E,R
+q6 b,λ -> q7 b,λ E,R
+q6 c,λ -> q7 c,λ E,R
+
+q7 a,a -> q7 a,a E,R
+q7 a,b -> q7 a,b E,R
+q7 a,c -> q7 a,c E,R
+q7 b,a -> q7 b,a E,R
+q7 b,b -> q7 b,b E,R
+q7 b,c -> q7 b,c E,R
+q7 c,a -> q7 c,a E,R
+q7 c,b -> q7 c,b E,R
+q7 c,c -> q7 c,c E,R
+q7 a,λ -> q8 a,λ E,L
+q7 b,λ -> q8 b,λ E,L
+q7 c,λ -> q8 c,λ E,L
+
+q8 a,a -> q8 λ,λ L,L
+q8 b,b -> q8 λ,λ L,L
+q8 c,c -> q8 λ,λ L,L
+q8 λ,λ -> qz 1,λ E,E
+
+q9 a,a -> q9 λ,λ L,L
+q9 a,b -> q9 λ,λ L,L
+q9 a,c -> q9 λ,λ L,L
+q9 b,a -> q9 λ,λ L,L
+q9 b,b -> q9 λ,λ L,L
+q9 b,c -> q9 λ,λ L,L
+q9 c,a -> q9 λ,λ L,L
+q9 c,b -> q9 λ,λ L,L
+q9 c,c -> q9 λ,λ L,L
+q9 a,* -> q9 λ,λ L,L
+q9 b,* -> q9 λ,λ L,L
+q9 c,* -> q9 λ,λ L,L
+q9 a,λ -> q9 λ,λ L,E
+q9 b,λ -> q9 λ,λ L,E
+q9 c,λ -> q9 λ,λ L,E
+q9 λ,λ -> qz 0,λ E,E
+
+q10 a,a -> q10 λ,λ L,R
+q10 a,b -> q10 λ,λ L,R
+q10 a,c -> q10 λ,λ L,R
+q10 b,a -> q10 λ,λ L,R
+q10 b,b -> q10 λ,λ L,R
+q10 b,c -> q10 λ,λ L,R
+q10 c,a -> q10 λ,λ L,R
+q10 c,b -> q10 λ,λ L,R
+q10 c,c -> q10 λ,λ L,R
+q10 a,λ -> q10 λ,λ L,E
+q10 b,λ -> q10 λ,λ L,E
+q10 c,λ -> q10 λ,λ L,E
+q10 λ,λ -> qz 0,λ E,E
